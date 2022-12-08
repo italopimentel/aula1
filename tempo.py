@@ -1,12 +1,43 @@
+hora_ini_valida = False
 
-def validar_tempo(tempo):
-        inicial_array = tempo
-        while (int(inicial_array[0]) > 23 or int(inicial_array[0]) < 0) or (int(inicial_array[1]) > 59 or int(inicial_array[1]) < 0):
-            print("valor inválido!")
-            tempo_inicial = input("Digite a hora inicial: ")
-            inicial_array = tempo_inicial.split(":")
-        return inicial_array
+while hora_ini_valida == False:
+    #cria um array separando a hora dos minutos
+    horario = input("Digite a hora e os minutos iniciais sepados por ':' ").split(":")
+    #verifica se o horário digitado é válido
+    if (int(horario[0]) < 24 and int(horario[0]) >= 0) and (int(horario[1]) < 60 and int(horario[1]) >= 0):
+        hora_ini_valida = True
+    else:
+        print("Hora inválida, digite novamente!")
 
-tempo_inicial = validar_tempo(input("Digite a hora inicial: "))
-print(tempo_inicial)
+#transforma o array de string em array de inteiro
+horario_inicial = [int(horario[0]), int(horario[1])]
 
+#---------------------------------------------------------------------------------------------------------------------------------------------------
+hora_fin_valida = False
+
+while hora_fin_valida == False:
+    #cria um array separando a hora dos minutos
+    horario = input("Digite a hora e os minutos finais sepados por ':' ").split(":")
+    #verifica se o horário digitado é válido
+    if (int(horario[0]) < 24 and int(horario[0]) >= 0) and (int(horario[1]) < 60 and int(horario[1]) >= 0):
+        hora_fin_valida = True
+    else:
+        print("Hora inválida, digite novamente corretamente!")
+    
+horario_final = [int(horario[0]), int(horario[1])] 
+
+#condição caso a hora inicial seja menor do que a final
+if horario_inicial[0] < horario_final[0]:
+    # realiza as operações das horas
+    resultado_hora = (horario_inicial[0] + 24) - horario_final[0]
+else:
+   resultado_hora = horario_final[0] - horario_inicial[0]
+
+#condição caso o minuto inicial seja menor do que o final
+if horario_inicial[1] < horario_final[1]:
+    resultado_minuto = (horario_inicial[1] - horario_final[1]) + 60
+    resultado_hora -= 1
+else:
+    resultado_minuto = horario_final[1] - horario_inicial[1]
+
+print("O JOGO DUROU {} HORA(S) E {} MINUTO(S)".format(resultado_hora,resultado_minuto))
