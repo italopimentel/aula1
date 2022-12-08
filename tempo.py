@@ -1,39 +1,12 @@
 
-lista_hora = []
-lista_minuto = []
+def validar_tempo(tempo):
+        inicial_array = tempo
+        while (int(inicial_array[0]) > 23 or int(inicial_array[0]) < 0) or (int(inicial_array[1]) > 59 or int(inicial_array[1]) < 0):
+            print("valor inválido!")
+            tempo_inicial = input("Digite a hora inicial: ")
+            inicial_array = tempo_inicial.split(":")
+        return inicial_array
 
-#falta terminar e tratar possíveis resultados 
+tempo_inicial = validar_tempo(input("Digite a hora inicial: "))
+print(tempo_inicial)
 
-while True:
-    num = int(input("Digite a hora inicial: "))
-    if num >= 1 and num <= 23:
-         lista_hora.append(num)
-         break
-    else:
-        print("valor inválido, digite novamente")
-
-while True:
-    num = int(input("Digite o minuto inicial: "))
-    if num >= 1 and num <= 59:
-        lista_minuto.append(num)
-        break
-    else:
-        print("valor inválido, digite novamente")
-
-while True:
-    num = int(input("Digite a hora final: "))
-    if (num >= 1 and num <= 23):
-         lista_hora.append(num)
-         break
-    else:
-        print("valor inválido, digite novamente")
-
-while True:
-    num = int(input("Digite o minuto final: "))
-    if num >= 1 and num <= 59:
-        lista_minuto.append(num)
-        break
-    else:
-        print("valor inválido, digite novamente")
-
-print ("o jogo durou {} horas e {} minutos".format(lista_hora[1] - lista_hora[0], lista_minuto[1] - lista_minuto[0]))
